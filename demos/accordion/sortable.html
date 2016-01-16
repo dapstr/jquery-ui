@@ -2,21 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>jQuery UI Accordion - Sortable</title>
-	<link rel="stylesheet" href="../../themes/base/jquery.ui.all.css">
-	<script src="../../jquery-1.9.1.js"></script>
-	<script src="../../ui/jquery.ui.core.js"></script>
-	<script src="../../ui/jquery.ui.widget.js"></script>
-	<script src="../../ui/jquery.ui.mouse.js"></script>
-	<script src="../../ui/jquery.ui.sortable.js"></script>
-	<script src="../../ui/jquery.ui.accordion.js"></script>
+	<link rel="stylesheet" href="../../themes/base/all.css">
 	<link rel="stylesheet" href="../demos.css">
-	<style>
-	/* IE has layout issues when sorting (see #5413) */
-	.group { zoom: 1 }
-	</style>
-	<script>
-	$(function() {
+	<script src="../../external/requirejs/require.js"></script>
+	<script src="../bootstrap.js" data-modules="sortable">
 		$( "#accordion" )
 			.accordion({
 				header: "> div > h3"
@@ -28,9 +19,11 @@
 					// IE doesn't register the blur when sorting
 					// so trigger focusout handlers to remove .ui-state-focus
 					ui.item.children( "h3" ).triggerHandler( "focusout" );
+
+					// Refresh accordion to handle new order
+					$( this ).accordion( "refresh" );
 				}
 			});
-	});
 	</script>
 </head>
 <body>
